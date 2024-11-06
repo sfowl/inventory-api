@@ -2,6 +2,8 @@ package config
 
 import (
 	"fmt"
+	"strconv"
+
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/project-kessel/inventory-api/internal/authn"
 	"github.com/project-kessel/inventory-api/internal/authz"
@@ -9,7 +11,6 @@ import (
 	"github.com/project-kessel/inventory-api/internal/server"
 	"github.com/project-kessel/inventory-api/internal/storage"
 	clowder "github.com/redhatinsights/app-common-go/pkg/api/v1"
-	"strconv"
 )
 
 // OptionsConfig contains the settings for each configuration option
@@ -23,6 +24,7 @@ type OptionsConfig struct {
 
 // NewOptionsConfig returns a new OptionsConfig with default options set
 func NewOptionsConfig() *OptionsConfig {
+	fmt.Println("new options")
 	return &OptionsConfig{
 		authn.NewOptions(),
 		authz.NewOptions(),
