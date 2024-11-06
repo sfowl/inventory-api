@@ -26,4 +26,9 @@ jobs:
       - name: Build
         run: go build -tags release -v ./...
       - name: Test
-        run: make test
+        run: make test-coverage
+      - name: Store coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage.html
