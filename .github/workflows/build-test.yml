@@ -43,7 +43,7 @@ jobs:
   code-coverage:
     name: "Code coverage report"
     continue-on-error: true
-    if: github.event_name == 'pull_request' # Do not run when workflow is triggered by push to main branch
+    if: github.event_name == 'pull_request' # Do not run when workflow is triggered by push to main
     runs-on: ubuntu-latest
     needs: build-and-test # Depends on the artifact uploaded by the "build-and-test" job
     permissions:
@@ -51,10 +51,10 @@ jobs:
       actions:       read  # to download code coverage results from "test" job
       pull-requests: write # write permission needed to comment on PR
     steps:
-      - uses: fgrosse/go-coverage-report@v1.1.1 # Consider using a Git revision for maximum security
+      - uses: fgrosse/go-coverage-report@v1.1.1
         with:
           coverage-artifact-name: "coverage-report"
           coverage-file-name: "coverage.out"
-
-
-
+           # below options used to make coverage work across forks
+          trim: github.com/project-kessel/inventory-api
+          root-package: ""

@@ -1,6 +1,8 @@
 package oidc
 
 import (
+	"fmt"
+
 	"github.com/spf13/pflag"
 )
 
@@ -22,6 +24,7 @@ func (o *Options) AddFlags(fs *pflag.FlagSet, prefix string) {
 	if prefix != "" {
 		prefix = prefix + "."
 	}
+	fmt.Println("someting")
 	fs.StringVar(&o.ClientId, prefix+"client-id", o.ClientId, "the clientId issued by the authorization server that represents the application")
 	fs.StringVar(&o.AuthorizationServerURL, prefix+"authn-server-url", o.AuthorizationServerURL, "the url to the authorization server")
 	fs.StringVar(&o.PrincipalUserDomain, prefix+"principal-user-domain", o.PrincipalUserDomain, "Kessel requires principal IDs to be qualified by a domain, in order to future proof integration of identities from multiple issuers.")
