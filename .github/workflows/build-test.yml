@@ -55,4 +55,6 @@ jobs:
         with:
           coverage-artifact-name: "coverage-report"
           coverage-file-name: "coverage.out"
-          trim: github.com/project-kessel # only needed for forks
+           # below options used to make coverage work across forks
+          trim: github.com/project-kessel
+          root: ""
