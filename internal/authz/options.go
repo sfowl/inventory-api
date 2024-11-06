@@ -22,6 +22,7 @@ const (
 
 func NewOptions() *Options {
 	fmt.Println("new options")
+	fmt.Println("new options")
 	return &Options{
 		Authz:  AllowAll,
 		Kessel: kessel.NewOptions(),
