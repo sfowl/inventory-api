@@ -85,7 +85,7 @@ test:
 	@$(GO) tool cover -func=coverage.out | grep total: | awk '{print $$3}'
 
 test-coverage: test
-	@$(GO) tool cover -func=coverage.out -o coverage.html
+	@$(GO) tool cover -html=coverage.out -o coverage.html
 	@echo "coverage report written to coverage.html"
 
 
