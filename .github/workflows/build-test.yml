@@ -57,5 +57,7 @@ jobs:
           coverage-file-name: "coverage.out"
            # below options used to make coverage work across forks
           trim: github.com/project-kessel/inventory-api
+          root-package: ""
       - name: debug
-        run: cat .github/outputs/all_modified_files.json
+        run: |
+          cat .github/outputs/all_modified_files.json
