@@ -2,6 +2,7 @@ package hosts
 
 import (
 	"context"
+
 	pb "github.com/project-kessel/inventory-api/api/kessel/inventory/v1beta1/resources"
 	authnapi "github.com/project-kessel/inventory-api/internal/authn/api"
 	"github.com/project-kessel/inventory-api/internal/biz/model"
@@ -33,6 +34,8 @@ func (c *HostsService) CreateRhelHost(ctx context.Context, r *pb.CreateRhelHostR
 	if err != nil {
 		return nil, err
 	}
+
+	fmt.Println("foobar")
 
 	if h, err := hostFromCreateRequest(r, identity); err == nil {
 		if resp, err := c.Ctl.Create(ctx, h); err == nil {
