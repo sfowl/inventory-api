@@ -29,9 +29,15 @@ jobs:
         run: go build -tags release -v ./...
       - name: Test
         run: make test
-      - uses: PaloAltoNetworks/cov@3.0.0
+      - name: Upload coverage.out
+        uses: PaloAltoNetworks/cov@3.0.0
         with:
           cov_mode: coverage
+          cov_file: coverage.out
+      - name: Coverage status
+        uses: PaloAltoNetworks/cov@3.0.0
+        with:
+          cov_mode: send-status
           cov_file: coverage.out
           workflow_run_id: ${{github.event.workflow_run.id}}
           workflow_head_sha: ${{github.event.workflow_run.head_sha}}
