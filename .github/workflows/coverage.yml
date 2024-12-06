@@ -4,7 +4,7 @@ on:
     workflows: ["ci-build-and-test"] # must match name in build-test.yml
     types: ["completed"]
 jobs:
-  cov:
+  coverage:
     runs-on: ubuntu-latest
     steps:
       - name: Coverage status
