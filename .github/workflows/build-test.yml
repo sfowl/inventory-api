@@ -34,10 +34,3 @@ jobs:
         with:
           cov_mode: coverage
           cov_file: coverage.out
-      - name: Coverage status
-        uses: PaloAltoNetworks/cov@3.0.0
-        with:
-          cov_mode: send-status
-          cov_file: coverage.out
-          workflow_run_id: ${{github.run_id}}
-          workflow_head_sha: ${{github.sha}}
