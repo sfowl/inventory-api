@@ -1,7 +1,7 @@
 name: coverage status
 on:
   workflow_run:
-    workflows: ["build-go"]
+    workflows: ["CI Build and Test"] # must match name in build-test.yml
     types: ["completed"]
 jobs:
   cov:
