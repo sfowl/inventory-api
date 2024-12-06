@@ -5,6 +5,7 @@ on:
     types: ["completed"]
 jobs:
   cov:
+    runs-on: ubuntu-latest
     steps:
       - name: Coverage status
         uses: PaloAltoNetworks/cov@3.0.0
