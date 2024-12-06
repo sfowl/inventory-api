@@ -1,4 +1,4 @@
-name: CI Build and Test
+name: ci-build-and-test
 
 on:
   workflow_call:
