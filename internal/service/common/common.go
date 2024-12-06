@@ -3,6 +3,7 @@ package common
 import (
 	"encoding/json"
 	"errors"
+	"github.com/google/uuid"
 	pbrelation "github.com/project-kessel/inventory-api/api/kessel/inventory/v1beta1/relationships"
 	pbresource "github.com/project-kessel/inventory-api/api/kessel/inventory/v1beta1/resources"
 	"github.com/project-kessel/inventory-api/internal/biz/model"
@@ -20,7 +21,7 @@ func ReporterResourceIdFromPb(resourceType, reporterId string, reporter *pbresou
 
 func ResourceFromPb(resourceType, reporterId string, resourceData model.JsonObject, metadata *pbresource.Metadata, reporter *pbresource.ReporterData) *model.Resource {
 	return &model.Resource{
-		ID:           0,
+		ID:           uuid.UUID{},
 		ResourceData: resourceData,
 		ResourceType: resourceType,
 		WorkspaceId:  metadata.WorkspaceId,
@@ -76,8 +77,8 @@ func ReporterRelationshipIdFromPb(relationshipType, reporterId string, reporter 
 		return model.ReporterRelationshipId{}, errors.New("invalid relationship type, not in the expected format subject_relation_object ")
 	}
 
-	subjectType := res[0]
-	objectType := res[2]
+	subjectType := conform(res[0])
+	objectType := conform(res[2])
 
 	return model.ReporterRelationshipId{
 		ReporterId:       reporterId,
@@ -105,15 +106,15 @@ func RelationshipFromPb(relationshipType, reporterId string, relationshipData mo
 		return nil, errors.New("invalid relationship type, not in the expected format subject_relation_object ")
 	}
 
-	subjectType := res[0]
-	objectType := res[2]
+	subjectType := conform(res[0])
+	objectType := conform(res[2])
 
 	return &model.Relationship{
-		ID:               0,
+		ID:               uuid.UUID{},
 		RelationshipData: relationshipData,
 		RelationshipType: relationshipType,
-		SubjectId:        0,
-		ObjectId:         0,
+		SubjectId:        uuid.UUID{},
+		ObjectId:         uuid.UUID{},
 		OrgId:            metadata.OrgId,
 		Reporter: model.RelationshipReporter{
 			Reporter: model.Reporter{
@@ -127,4 +128,9 @@ func RelationshipFromPb(relationshipType, reporterId string, relationshipData mo
 			ObjectResourceType:     objectType,
 		},
 	}, nil
+}
+
+// Conform converts any hyphens in resource types to underscores to conform with SpiceDB validation requirements
+func conform(resource string) string {
+	return strings.ReplaceAll(resource, "-", "_")
 }

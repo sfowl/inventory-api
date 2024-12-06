@@ -69,6 +69,10 @@ build:
 docker-build-push:
 	./build_deploy.sh
 
+.PHONY: build-push-minimal
+build-push-minimal:
+	./build_push_minimal.sh
+
 .PHONY: clean
 # removes all binaries
 clean:
@@ -130,6 +134,10 @@ inventory-up-sso:
 inventory-up-kafka:
 	./scripts/start-inventory-kafka.sh
 
+.PHONY: inventory-up-kind
+inventory-up-kind:
+	./scripts/start-inventory-kind.sh
+
 .PHONY: get-token
 get-token:
 	./scripts/get-token.sh
@@ -145,6 +153,10 @@ inventory-down-sso:
 .PHONY: inventory-down-kafka
 inventory-down-kafka:
 	./scripts/stop-inventory-kafka.sh
+
+.PHONY: inventory-down-kind
+inventory-down-kind:
+	./scripts/stop-inventory-kind.sh
 
 .PHONY: run
 # run api locally

@@ -4,8 +4,8 @@ server:
   grpc:
     address: 0.0.0.0:9081
 authn:
- psk:
-   pre-shared-key-file: /psks.yaml
+  psk:
+    pre-shared-key-file: /psks.yaml
 authz:
   impl: kessel
   kessel:
@@ -17,6 +17,7 @@ eventing:
   eventer: stdout
   kafka:
 storage:
+  disable-persistence: false
   database: postgres
   sqlite3:
     dsn: inventory.db
