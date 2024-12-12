@@ -14,6 +14,7 @@ import (
 )
 
 func New(config CompletedConfig, logger *log.Helper) (api.Authenticator, error) {
+	fmt.Println("foo")
 	d := delegator.New()
 
 	// client certs authn
