@@ -54,6 +54,8 @@ jobs:
           echo $GITHUB_OUTPUT
           cat $GITHUB_OUTPUT
           cat $GITHUB_OUTPUT > $GITHUB_STEP_SUMMARY
+          echo "${{ needs.build-and-test.outputs.coverage_report }}"
+          cat "${{ needs.build-and-test.outputs.coverage_report }}" > "GITHUB_STEP_SUMMARY"
 
 
 
