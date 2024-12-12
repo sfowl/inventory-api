@@ -41,7 +41,7 @@ jobs:
     needs: build-and-test
     steps:
       - name: coverage report
-        uses: fgrosse/go-coverage-report@1.1.1
+        uses: fgrosse/go-coverage-report@v1.2.0
         with:
           coverage-file-name: coverage.out
           skip-comment: true # requires write permissin on pull requests
