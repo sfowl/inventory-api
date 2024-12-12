@@ -51,6 +51,7 @@ jobs:
           {
             echo "${{ steps.coverage-report.outputs.coverage_report }}"
           } >> "$GITHUB_STEP_SUMMARY"
+          cat "$GITHUB_STEP_SUMMARY"
 
 
 
