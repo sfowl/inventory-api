@@ -2,6 +2,9 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
+
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/project-kessel/inventory-api/cmd/common"
 	"github.com/project-kessel/inventory-api/cmd/migrate"
@@ -10,8 +13,6 @@ import (
 	clowder "github.com/redhatinsights/app-common-go/pkg/api/v1"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"os"
-	"path/filepath"
 )
 
 // go build -ldflags "-X cmd.Version=x.y.z"
@@ -42,6 +43,7 @@ func Execute() {
 
 func Initialize() {
 	initConfig()
+	fmt.Println("foo")
 
 	// for troubleshoot, when set to debug, configuration info is logged in more detail to stdout
 	logLevel := common.GetLogLevel()
