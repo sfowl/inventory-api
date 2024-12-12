@@ -46,21 +46,9 @@ jobs:
         with:
           coverage-file-name: coverage.out
           skip-comment: true # requires write permissin on pull requests
+          # below options help track coverage across forks
+          trim: github.com/project-kessel/inventory-api
+          root-package: ""
       - name: coverage summary
         run: |
-          {
-            echo "${{ steps.coverage-report.outputs.coverage_report }}"
-          } >> "$GITHUB_STEP_SUMMARY"
-          cat "$GITHUB_STEP_SUMMARY"
-
-
-
-  #     # - name: coverage
-  #     #   uses: notmiguelalves/go-coverage-summary@v0.5.0
-  #     #   with:
-  #     #     coverage-file: "coverage.out"
-  #     # - name: Upload coverage.out
-  #     #   uses: PaloAltoNetworks/cov@3.0.0
-  #     #   with:
-  #     #     cov_mode: coverage
-  #     #     cov_file: coverage.out
+          echo "${{ steps.coverage-report.outputs.coverage_report }}" >> "$GITHUB_STEP_SUMMARY"
