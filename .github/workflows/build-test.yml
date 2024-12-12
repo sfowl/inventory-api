@@ -49,6 +49,8 @@ jobs:
         run: |
           cat $COVERAGE_COMMENT_PATH
           cat $COVERAGE_COMMENT_PATH > $GITHUB_STEP_SUMMARY
+          cat $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT > $GITHUB_STEP_SUMMARY
 
 
 
