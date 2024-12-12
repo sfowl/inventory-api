@@ -28,33 +28,34 @@ jobs:
       - name: Build
         run: go build -tags release -v ./...
       - name: Test
-        run: make test-coverage
-      - name: Store coverage report
+        run: make test
+      - name: Archive code coverage results
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-report
+          name: code-coverage
           path: coverage.out
-      # - name: Store html coverage report
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: coverage-html-report
-      #     path: coverage.html
 
-  code-coverage:
-    name: "Code coverage report"
-    continue-on-error: true
-    if: github.event_name == 'pull_request' # Do not run when workflow is triggered by push to main branch
-    runs-on: ubuntu-latest
-    needs: build-and-test # Depends on the artifact uploaded by the "build-and-test" job
-    permissions:
-      contents:      read
-      actions:       read  # to download code coverage results from "test" job
-      pull-requests: write # write permission needed to comment on PR
-    steps:
-      - uses: fgrosse/go-coverage-report@v1.1.1 # Consider using a Git revision for maximum security
-        with:
-          coverage-artifact-name: "coverage-report"
-          coverage-file-name: "coverage.out"
+  # code-coverage:
+  #   name: Code coverage report
+  #   runs-on: ubuntu-latest
+  #   needs: build-and-test
+  #   steps:
+  #     - name: coverage report
+  #       uses: fgrosse/go-coverage-report@v1.2.0
+  #       with:
+  #         coverage-file-name: coverage.out
+  #         skip-comment: true # requires write permissin on pull requests
+  #     - name: coverage summary
+  #       run: cat coverage_report > $GITHUB_STEP_SUMMARY
 
 
 
+  #     # - name: coverage
+  #     #   uses: notmiguelalves/go-coverage-summary@v0.5.0
+  #     #   with:
+  #     #     coverage-file: "coverage.out"
+  #     # - name: Upload coverage.out
+  #     #   uses: PaloAltoNetworks/cov@3.0.0
+  #     #   with:
+  #     #     cov_mode: coverage
+  #     #     cov_file: coverage.out
