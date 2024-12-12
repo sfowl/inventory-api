@@ -41,6 +41,7 @@ jobs:
     needs: build-and-test
     steps:
       - name: coverage report
+        id: coverage-report
         uses: fgrosse/go-coverage-report@v1.2.0
         with:
           coverage-file-name: coverage.out
@@ -54,8 +55,8 @@ jobs:
           echo $GITHUB_OUTPUT
           cat $GITHUB_OUTPUT
           cat $GITHUB_OUTPUT > $GITHUB_STEP_SUMMARY
-          echo "${{ needs.build-and-test.outputs.coverage_report }}"
-          cat "${{ needs.build-and-test.outputs.coverage_report }}" > "GITHUB_STEP_SUMMARY"
+          echo "${{ steps.coverage-report.outputs.coverage_report }}"
+          cat "${{ steps.coverage-report.outputs.coverage_report }}" > "GITHUB_STEP_SUMMARY"
 
 
 
