@@ -48,7 +48,12 @@ jobs:
           skip-comment: true # requires write permissin on pull requests
       - name: coverage summary
         run: |
-          echo "${{ steps.coverage-report.outputs.coverage_report }}" > "$GITHUB_STEP_SUMMARY"
+          # echo "${{ steps.coverage-report.outputs.coverage_report }}" > "$GITHUB_STEP_SUMMARY"
+          cat <<EOF > "$GITHUB_STEP_SUMMARY"
+          ${{ steps.coverage-report.outputs.coverage_report }}
+          EOF
+
+
           # echo $COVERAGE_COMMENT_PATH
           # cat $COVERAGE_COMMENT_PATH
           # cat $COVERAGE_COMMENT_PATH > $GITHUB_STEP_SUMMARY
