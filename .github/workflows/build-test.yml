@@ -35,6 +35,8 @@ jobs:
         with:
           name: code-coverage
           path: coverage.out
+      - name: artifact link
+        run: echo "${{ steps.artifact-upload.outputs.artifact-url }}"
 
   code-coverage:
     name: Code coverage report
@@ -52,5 +54,3 @@ jobs:
           root-package: ""
       - name: coverage summary
         run: echo "${{ steps.coverage-report.outputs.coverage_report }}" >> "$GITHUB_STEP_SUMMARY"
-      - name: artifact link
-        run: echo "${{ steps.artifact-upload.outputs.artifact-url }}"
