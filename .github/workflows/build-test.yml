@@ -30,6 +30,7 @@ jobs:
       - name: Test
         run: make test
       - name: Archive code coverage results
+        id: artifact-url
         uses: actions/upload-artifact@v4
         with:
           name: code-coverage
@@ -50,5 +51,6 @@ jobs:
           trim: github.com/project-kessel/inventory-api
           root-package: ""
       - name: coverage summary
-        run: |
-          echo "${{ steps.coverage-report.outputs.coverage_report }}" >> "$GITHUB_STEP_SUMMARY"
+        run: echo "${{ steps.coverage-report.outputs.coverage_report }}" >> "$GITHUB_STEP_SUMMARY"
+      - name: artifact link
+        run: echo "${{ steps.artifact-upload.outputs.artifact-url }}"
